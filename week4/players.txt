@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+
+class Player{
+        int no_mpl,total_runs,no_notout;
+        char pcode[10],name[20];
+        public:
+                void getData()
+                {
+                        cout<<"\nEnter Player code : ";
+                        cin>>pcode;
+                        cout<<"\nEnter Player Name : ";
+                        cin>>name;
+                        cout<<"\nEnter No. of matches played : ";
+                        cin>>no_mpl;
+                        cout<<"\nEnter total runs scored in all matches : ";
+                        cin>>total_runs;
+                        cout<<"\nEnter number of times not out";
+                        cin>>no_notout;
+                }
+
+                void display(){
+                        float avg;
+                        cout<<"\nPlayer Code : "<<pcode;
+                                                         
+                        cout<<"\nPlayer Name : "<<name;
+                        avg=total_runs/no_mpl;
+                        cout<<"\nAverage score : "<<avg;
+                }
+
+                void display(Player c[],int n){
+                        int ttlrun,ttlnm;
+                        for(int i=0;i<n;i++){
+                                ttlrun+=c[i].total_runs;
+                                ttlnm+=c[i].no_mpl;
+                        }
+                        cout<<"Average : "<<ttlrun/ttlnm;
+                }
+};
+int main()
+{
+        Player p[10];
+        int n,ch=1;
+        while(ch>0 && ch<5)
+        {
+                cout<<"\n1.Enter details of players \n2.Display average run of player \n3.Average run of all players \n4.List of players \nEnter your choice : ";
+                cin>>ch;
+                switch(ch)
+                {
+                        case 1:
+                                cout<<"Enter number of players : ";
+                                cin>>n;
+                                for(int i=0;i<n;i++){
+                                        p[i].getData();
+                                }
+                                break;
+                        case 2:
+                                cout<<"Enter the player code: ";
+                                int code;
+                                cin>>code;
+
+
+                                break;
+                        case 3:
+                                p[0].display(p,n);
+                                break;
+                        case 4:
+                                break;
+                }
+        }
+}

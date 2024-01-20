@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+ 
+class Complex{
+	public:
+    	int real;
+    	int imag;
+
+	Complex(){
+		real=imag=0;
+	}
+	Complex(int real,int imag){
+		real=real;
+		imag=imag;
+	}
+	void display(){
+        	cout<<real<<"+"<<imag<<"i"<<endl;
+    	}
+ 	
+	
+   	Complex add(int s1,Complex s2){
+    		Complex return_object;
+		return_object.real = s1 + s2.real;
+		return_object.imag = s2.imag;
+		return return_object;
+	}
+	
+	
+   	Complex add(Complex s1,Complex s2){
+    		Complex return_object;
+		return_object.real = s1.real + s2.real;
+		return_object.imag = s1.imag + s2.imag;
+		return return_object;
+	}
+
+};
+ 
+int main()
+{
+	int choice,num,real,imag;	
+	Complex C1,C2,C3;	
+	while(true){
+		cout<<"\n1. Add (s1,s2) where s1 is an integer and s2 is a complex number";
+		cout<<"\n2. Add (s1,s2) where s1 & s2 are both complex numbers ";
+		cout<<"\nEnter your choice : ";
+		cin>>choice;
+		switch(choice){
+			case 1 :
+				cout<<"Enter the integer number : ";
+				cin>>num;
+				cout<<"Enter real and imaginary part for complex number : ";
+				cin>>real>>imag;
+				C1.real=real;
+				C1.imag=imag;
+				C3 = C3.add(num,C1);
+				C3.display();
+				break;
+			case 2 :
+				cout<<"Enter real and imaginary part for complex number : ";
+				cin>>real>>imag;
+				C1.real=real;
+				C1.imag=imag;
+				cout<<"Enter real and imaginary part for complex number : ";
+				cin>>real>>imag;
+				C2.real=real;
+				C2.imag=imag;
+				C3 = C3.add(C1,C2); 
+				C3.display();
+				break;
+			default:cout<<"Invalid choice\n";exit(0);
+		}
+		
+	}	
+	
+	return 0;
+}

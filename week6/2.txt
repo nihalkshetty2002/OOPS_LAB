@@ -1,0 +1,87 @@
+// Program: Write a C++ program to perform addition and subtraction on two complex numbers using operator overloading using member functions.
+// Name: Adithya Bashri S
+// Roll No.: 230970068
+// Date: 15/9/23
+
+#include <iostream>
+using namespace std;
+
+class complex
+{
+public:
+        int real, imaginary;
+
+        complex()
+        {
+                real = imaginary = 0;
+        }
+        complex(int r, int i) : real(r), imaginary(i)
+        {
+        }
+
+        void display()
+        {
+                if (imaginary >= 0)
+                {
+                        cout << endl
+                             << real << " + " << imaginary << "i";
+                }
+                else
+                {
+                        int imag = imaginary * (-1);
+                        cout << endl
+                             << real << " - " << imag << "i";
+                }
+        }
+
+        complex operator+(complex b) const
+        {
+                complex temp;
+                temp.real = real + b.real;
+                temp.imaginary = imaginary + b.imaginary;
+                return temp;
+        }
+        complex operator-(complex b) const
+        {
+                complex temp;
+                temp.real = real - b.real;
+                temp.imaginary = imaginary - b.imaginary;
+                return temp;
+        }
+};
+
+int main()
+{
+        system("clear");
+        complex c1, c2, c3, c4;
+        cout << "c1 Real: ";
+        cin >> c1.real;
+
+        cout << "c1 imaginary: ";
+        cin >> c1.imaginary;
+
+        cout << "c2 Real: ";
+        cin >> c2.real;
+
+        cout << "c2 Imaginary: ";
+        cin >> c2.imaginary;
+
+        cout << "\n----c1----";
+        c1.display();
+        cout << "\n----------";
+        cout << "\n----c2----";
+        c2.display();
+        cout << "\n----------";
+
+        c3 = c1 + c2;
+        c4 = c1 - c2;
+
+        cout << "\n----c3 = c1 + c2----";
+        c3.display();
+        cout << "\n--------------------";
+        cout << "\n----c4 = c1 - c2----";
+        c4.display();
+        cout << "\n--------------------";
+        cout << endl;
+        return 0;
+}

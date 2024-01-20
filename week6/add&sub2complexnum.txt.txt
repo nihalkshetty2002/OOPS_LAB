@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+class complex
+{
+        public: float img,real;
+                complex()
+                {
+                        cout<<"DEFAULT CONSTR CALLED"<<endl;
+                        real=img=0;
+                }
+                complex(float i,float r)
+                {
+                        cout<<"PARAMETERIZED CONSTR CALLED"<<endl;
+                        img=i;
+                        real=r;
+                }
+                void display()
+                {
+                        cout<<real<<" + "<<img<< "i" <<endl;
+                }
+
+                complex operator+( const complex obj)
+                {
+                        cout<<"+ operator called"<<endl;
+                        complex temp;
+                        temp.img=img+obj.img;
+                        temp.real=real+obj.real;
+                        return temp;
+                }
+                complex operator-(const complex obj)
+                {
+                        cout<<"- operator called"<<endl;
+                        complex temp;
+                        temp.img=img-obj.img;
+                        temp.real=real-obj.real;
+                        return temp;
+                }
+};
+int main()
+{
+        system("clear");
+        complex c1,c2,c3;
+
+        cout<<"Enter real and complex coefficient of the first complex number: " <<endl;
+        cin>>c1.real;
+        cin>>c1.img;
+
+        cout << "Enter real and complex coefficient of the second complex number: " << endl;
+        cin>>c2.real;
+        cin>>c2.img;
+
+        cout<<"ADDITON COMPLEX"<<endl;
+        c3=c1+c2;
+        c3.display();
+
+        cout<<"SUBTRACTION COMPLEX"<<endl;;
+        c3=c1-c2;
+        c3.display();
+
+        return 0;
+}

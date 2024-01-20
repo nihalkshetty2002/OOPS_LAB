@@ -1,0 +1,68 @@
+//Define a class to represent the bank account of a customer where the data members 
+//are Customer name, Account number, Account type [Savings(S), Fixed(F) or 
+//Current(C)] and balance amount. 
+//Nihal 
+//230970065
+//
+#include<iostream>
+using namespace std;
+
+class Bank{
+        char cname[20];
+        long int accno;
+        char atype[10];
+        int balance;
+
+        public:
+                Bank(){
+                        balance=500;
+                }
+
+                void getdata(){
+                        cout<<"\nEnter the Customer name: ";
+                        cin>>cname;
+                        cout<<"\nEnter the Account number : ";
+                        cin>>accno;
+                        cout<<"\nEnter the Account type : ";
+                        cin>>atype;
+                }
+                void deposit(){
+                        int amt;
+                        cout<<"\nEnter the amount to be deposited : ";
+                        cin>>amt;
+                        balance+=amt;
+                }
+                void friend withdraw(Bank &);
+
+                void display()
+                {
+                        cout<<"\nCustomer Name : "<<cname;
+                        cout<<"\nAccount Number : "<<accno;
+                        cout<<"\nAccount Type : "<<atype;
+                        cout<<"\nAccount Balance : "<<balance<<endl;
+                }
+};
+void withdraw(Bank &b){
+        int amt;
+        cout<<"\nEnter the amount to withdraw : ";
+        cin>>amt;
+        if(amt<=0)
+                cout<<"\nEnter valid amount .";
+        else if(amt>b.balance)
+                cout<<"\nInsufficient Funds. ";
+        b.balance-=amt;
+}
+              int main(){
+        Bank b1,b2;
+        b1.getdata();
+        b1.deposit();
+        withdraw(b1);
+        b1.display();
+
+        b2.getdata();
+        b2.deposit();
+        withdraw(b2);
+        b2.display();
+
+        return 0;
+}

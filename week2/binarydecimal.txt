@@ -1,0 +1,38 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+        system("clear");
+        int number,a,binary=0,i,decimal=0,choice;
+        cout<<"1.Decimal to binary conversion\n2.Binary to decimal conversion\nEnter your choice:";
+        cin>>choice;
+        switch(choice)
+                {
+                        case 1:i=1;
+                               cout<<"\nEnter a number";
+                               cin>>number;
+                               while(number>0)
+                               {
+                                       a=number%2;
+                                       number=number/2;
+                                       binary=binary+a*i;
+                                       i=i*10;
+                               }
+                               cout<<"\nBinary:"<<binary;
+                               break;
+                        case 2:i=0;
+                               cout<<"Enter the number in binary format";
+                               cin>>number;
+                               while(number>0)
+                               {
+                                       a=number%10;
+                                       number=number/10;
+                                       decimal=pow(2i)*a+decimal;
+                                       i++;
+                               }
+                               cout<<"\n Decimal format:"<<decimal<<endl;
+                               break;
+                        default:exit(0);
+                }
+                                                                                              

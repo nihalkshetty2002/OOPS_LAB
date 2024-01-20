@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+class complex
+{
+        int real,img;
+        public:void getdata(){
+                       cout<<"\nEnter real and imaginary part of a number: ";
+                       cin>>real>>img;
+               }
+               void display(){
+                       cout<<"\nResult is: "<<real<<"+"<<img<<"i"<<endl;
+               }
+               complex add(complex c1,complex c2){
+
+                               complex temp;
+                               temp.real=c1.real+c2.real;
+                               temp.img=c1.img+c2.img;
+                               return temp;
+                       }
+                complex add(int num,complex c2){
+                        complex temp;
+                        temp.real=num+c2.real;
+                        temp.img=c2.img;
+                        return temp;
+                }
+};
+int main()
+{
+        system("clear");
+        complex c1,c2,c3,c4;
+        int choice,num;
+        while(true)
+        {
+                cout<<"\n1.Add an integer and a complex number\n2.Add 2 complex numbers\nEnter your choice:";
+                cin>>choice;
+               switch(choice){
+                       case 1:cout<<"\nEnter integer number: ";
+ cin>>num;
+                              c1.getdata();
+                              c4=c3.add(num,c1);
+                              c4.display();
+                              break;
+                        case 2:cout<<"\nEnter 1st complex number: ";
+                               c1.getdata();
+                               cout<<"\nEnter 2nd complex number: ";
+                               c2.getdata();
+                               c4=c3.add(c1,c2);
+                               c4.display();
+                               break;
+                         default:cout<<"\nInvalid choice";
+                                 exit(0);
+                                }
+        }
+               return 0;
+}

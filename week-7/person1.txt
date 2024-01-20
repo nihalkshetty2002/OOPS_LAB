@@ -1,0 +1,87 @@
+#include<iostream>
+using namespace std;
+class person{
+        int id;
+        char name[10];
+        public:void getdata()
+               {
+                       cout<<"Enter id: ";
+                       cin>>id;
+                       cout<<"\nEnter name: ";
+                       cin>>name;
+               }
+               void display()
+               {
+               cout<<"Id is: "<<id<<"\nName is: "<<name<<endl;
+               }
+};
+class teaching:public person
+{
+        char subject[10],name[10];
+        public:
+        void getdata()
+        {
+                cout<<"\nEnter name: ";
+                cin>>name;
+                cout<<"\nEnter subject name: ";
+                cin>>subject;
+        }
+        void display()
+        {
+                cout<<"\nName is: "<<name<<"\nSubject is: "<<subject;
+        }
+};
+class nonteaching:public person
+{
+        char dept[10];
+        public:
+        void getdata()
+        {
+                person::getdata();
+                cout<<"\nEnter department name: ";
+                cin>>dept;
+        }
+        void display(){
+                 person::display();
+                cout<<"\nDepartment is: "<<dept;
+        }
+};
+class instructor:public person
+{
+        public:
+                void display(){
+                        person::display();
+                }
+                void getdata(){
+                        person::getdata();
+                }
+};
+int main(){
+        system("clear");
+        instructor inst[10];
+        teaching teach[10];
+        nonteaching non[10];
+        int n;
+        cout<<"\nEnter number of instructors: ";
+        cin>>n;
+        for(int i=0;i<n;i++)
+                inst[i].getdata();
+        cout<<"\nInstructors details\n ";
+        for(int i=0;i<n;i++)
+                inst[i].display();
+        cout<<"\nEnter number of teaching staff: ";
+        cin>>n;
+        for(int i=0;i<n;i++)
+                teach[i].getdata();
+cout<<"\nTeaching staff details\n ";
+        for(int i=0;i<n;i++)
+                teach[i].display();
+        cout<<"\nEnter number of non teaching staff: ";
+        cin>>n;
+        for(int i=0;i<n;i++)
+                non[i].getdata();
+        cout<<"\nNon teaching staff details\n";
+        for(int i=0;i<n;i++)
+                non[i].display();
+        return 0;
+}

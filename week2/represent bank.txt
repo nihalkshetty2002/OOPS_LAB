@@ -1,0 +1,78 @@
+//Program to create a structure to represent bank account
+//Nihal
+//230970065
+//24-08-23
+#include<iostream>
+#include<string>
+using namespace std;
+struct bank
+{
+    char name[25];
+    string acc_type;
+    long acc_no,balance;
+};
+
+int main(){
+    bank b1;
+    int choice;
+    long amt;
+    system("clear");
+    cout<<"Enter name of the customer: ";
+    cin>>b1.name;
+    cout<<"\nEnter Account Number:";
+    cin>>b1.acc_no;
+    //Checking if user wants savings or fixed accounts
+    while(true){
+        cout<<"Choose account type:\n1) Savings\n2) Current\n3) Fixed\nEnter choice:";
+        cin>>choice;
+        switch (choice){
+	 case 1:
+                    b1.acc_type="Savings";
+                    break;
+            case 2:b1.acc_type="Current";
+                        break;
+            case 3:b1.acc_type="Fixed";
+                        break;
+
+            default :cout<<"\nInvalid Choice.\n\n";
+            continue;
+        }
+        break;
+    }
+    cout<<"Enter the balance:";
+    cin>>b1.balance;
+    cout<<endl;
+    while(true){
+        cout<<"Choose option:\n1) Deposit\n2) Withdraw\n3) Check Balance\n4) Exit\nEnter choice:";
+        cin>>choice;
+        switch (choice){
+            case 1:    
+		cout<<"Enter amount to deposit:";
+                    cin>>amt;
+                    b1.balance+=amt;
+                    cout<<endl;
+                    break;
+            case 2: cout<<"Enter amount to withdraw:";
+                    cin>>amt;
+                    if((double)(b1.balance-amt)<0 ) {
+                        cout << "\nInsufficient funds.\n\n";
+                        break;
+                    }
+                    else{
+                        b1.balance-=amt;
+                        cout<<endl;
+                        }
+                    break;
+            case 3: cout<<"Balance = "<<b1.balance<<endl<<endl;
+                    break;
+            case 4: cout<<"\nThankyou";
+                    exit(0);
+            default:
+                    cout<<"\nInvalid Choice.\n\n";
+                    continue;
+        }
+
+    }
+
+    return 0;
+}

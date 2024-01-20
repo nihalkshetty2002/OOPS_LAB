@@ -1,0 +1,93 @@
+#include<iostream>
+using namespace std;
+
+class cricket_player{
+        int matches_played,not_out_times;
+        char name[20],player_code[6];
+
+        public:
+                int total_runs;
+                void inputData(){
+                        cout<<"Enter Player code : ";
+                        cin>>player_code;
+                        cout<<"Enter Player name : ";
+                        cin>>name;
+                        cout<<"Enter no. of matches played : ";
+                        cin>>matches_played;
+                        cout<<"Enter total runs : ";
+                        cin>>total_runs;
+                        cout<<"Enter no. of Not outs : ";
+                        cin>>not_out_times;
+                }
+                void display(){
+                        cout<<"\nPlayer code : "<<player_code;
+                        cout<<"\nPlayer Name : "<<name;
+                        cout<<"\nNumber of matches playes : "<<matches_played;
+                        cout<<"\nTotal runs  : "<<total_runs;
+                        cout<<"\nNumber of Not outs : "<<not_out_times;
+                }
+
+                float getAvgRun(){
+                        return total_runs/matches_played;
+                }
+                
+               
+};
+
+
+int main()
+{
+        cricket_player obj[10];
+        int n,temp,not_outs,choice,x;
+        do
+        {
+            cout<<"1.enter players details\n2.Display the average run of a single player\n3.Display average of all players\n4.list all players in sorted order as per total runs"<<endl;
+            cout<<"\n enter the choice"<<endl;
+            cin>>choice;
+            switch(choice)
+            {
+                case 1:cout<<"Enter number of players : ";
+                        cin>>n;
+                        for(int i=0;i<n;i++)
+                        {
+                        cout<<"Enter detail of player "<<i+1<<endl;
+                        obj[i].inputData();
+                        }
+                        break;
+                case 2: cout<<"Enter player no. to get his average      run : ";
+                        cin>>temp;
+                        cout<<"Average run of Player "<<temp<<" is : "<<obj[temp-1].getAvgRun()<<endl;
+                        break;
+                case 3 : cout<<"\nAverage runs of all players : \n"         ;
+                            for(int i=0;i<n;i++)
+                            {
+                            cout<<"Player "<<i+1<<"'s average score : "<<obj[i].getAvgRun()<<endl;
+                            }
+                            break;
+                case 4:cout<<"List of players in sorted order as per     total runs : ";
+                        cricket_player tempObj;
+                         for(int i=0;i<n-1;i++)
+                             for(int j=1;j<n-i-1;j++)
+                             if(obj[j].total_runs>obj[j+1].total_runs)
+                             {
+                                tempObj = obj[i];
+                                obj[i] = obj[j];
+                                obj[j] = tempObj;
+                            }
+                            for(int i=0;i<n;i++)
+                             {
+                                obj[i].display();
+                                cout<<endl;
+                             }
+                             break;
+                default:cout<<"invalid chocice";
+                        break;
+                    
+        
+        
+                }
+            cout<<"enter 1 to continue"<<endl;    
+            cin>>x;
+        }while(x==1);   
+        return 0;
+}

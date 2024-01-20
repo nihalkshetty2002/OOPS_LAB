@@ -1,0 +1,69 @@
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class my_String
+{
+public:
+        char s[30];
+
+        my_String(char a[])
+        {
+                int i;
+                for (i = 0; a[i] != '\0'; i++)
+                {
+                        s[i] = a[i];
+                }
+                s[i] = '\0';
+        }
+
+        bool operator<=(my_String str)
+        {
+
+                for (int i = 0; s[i] != '\0'; i++)
+                {
+
+                        if (str.s[i] != s[i])
+                        {
+                                if (s[i] > str.s[i])
+                                {
+                                        return false;
+                                }
+                        }
+                }
+
+                return true;
+        }
+};
+
+int main()
+{
+        system("clear");
+        char a[30], b[30], result[6];
+
+        cout << "String s1: ";
+        cin >> a;
+
+        cout << "String s2: ";
+        cin >> b;
+
+        my_String s1(a);
+        my_String s2(b);
+        if (s1 <= s2)
+        {
+
+                cout << "--------------------------------";
+                cout << "\ns1 <= s2 ---> TRUE" << endl;
+                cout << "--------------------------------";
+        }
+        else
+        {
+                cout << "--------------------------------";
+                cout << "\ns1 <= s2 ---> FALSE" << endl;
+                cout << "--------------------------------";
+        }
+
+        cout << endl;
+}

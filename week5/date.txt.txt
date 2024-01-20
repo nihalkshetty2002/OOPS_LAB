@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+class Date
+{
+    int day;
+    int month;
+    int year;
+    public:
+            void getdata()
+            {   
+                cout<<"-----get data function----"<<endl;
+                cout<<"enter the date in dd mm yy format:"<<endl;
+                cin>>day>>month>>year;
+            }
+            void operator++()
+            {
+                cout<<"\n-------increment function--"<<endl;
+                 int daysInMonth[] = {0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                 if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) 
+                 {
+                     daysInMonth[2] = 29;
+                 }
+                  day++;
+                if (day > daysInMonth[month]) 
+                {
+                     day = 1;
+                     month++;
+                     if (month >= 12) 
+                     {
+                         month = 1;
+                         year=year+1;
+                    }
+                 }
+
+            }
+            void display() 
+            {
+                cout<<" ---display function---"<<endl;
+                cout << day << "/" << month << "/" << year << endl;
+            }
+            
+};
+int main()
+{
+    Date d1;
+    cout<<"---inside main ---"<<endl;
+    d1.getdata();
+    cout<<"orginal date:"<<endl;
+    d1.display();
+    ++d1;
+    cout<<"new date:"<<endl;
+    d1.display();
+    
+}

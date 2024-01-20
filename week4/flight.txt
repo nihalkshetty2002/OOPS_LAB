@@ -1,0 +1,66 @@
+//Create a flight class that has private data members: flight number (integer),destination (characters), distance (float), fuel (float). 
+//a) Provide a default constructor that initializes distance to 500 kms always 
+//b) Private Member functions: calculate_fuel()to calculate the value of Fuel as per 
+//the following criteria: 
+//Distance (in kilometers) Fuel (in liters) 
+//<=1000 500 
+//>1000 and <=2000 1100 
+//>2000 2200 
+//c) Public Member functions: information_entry() to allow user to enter values for 
+//flight number, destination, distance which calls function calculate_fuel() to 
+//calculate the quantity of fuel and display_info() to allow viewing flight details
+//Nihal Kiran Shetty
+//
+#include <iostream>
+using namespace std;
+
+class Flight {
+private:
+    int flightNumber;
+    char destination[20];
+    float distance,fuel;
+
+    void calculate_fuel() {
+        if (distance <= 1000) {
+            fuel = 500.0;
+        } else if (distance > 1000 && distance <= 2000) {
+            fuel = 1100.0;
+        } else {
+            fuel = 2200.0;
+        }
+    }
+
+public:
+    Flight(){
+        distance=500;
+       
+    }
+
+    void information_entry() {
+        cout<<"\nEnter Flight Number: ";
+        cin >>flightNumber;
+
+        cout<<"\nEnter Destination (without spaces): ";
+        cin>>destination; // Read destination without spaces
+
+        cout<<"\nEnter Distance (in kilometers): ";
+        cin>>distance;
+
+        calculate_fuel();
+    }
+
+    void display_info() {
+        cout << "\nFlight Number: " << flightNumber << endl;
+        cout << "\nDestination: " << destination << endl;
+        cout << "\nDistance (km): " << distance << endl;
+        cout << "\nFuel (liters): " << fuel << endl;
+    }
+};
+
+int main() {
+    Flight flight1;
+     flight1.information_entry();
+    flight1.display_info();
+
+    return 0;
+}
