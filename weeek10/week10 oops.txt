@@ -1,0 +1,175 @@
+//Ashwin
+//220970025
+//program to demonstrate file concept.
+//date:30/11/2022/
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+void createFile(string filename)
+{
+        ofstream obj;
+        string content;
+
+        cout << "Enter content to insert : ";
+        getline(cin,content,'#');
+        obj.open(filename);
+        obj << content ;
+        obj.close();
+}
+
+void convertCase(string filename)
+{
+        fstream i_obj;
+        char ch[20];
+        int i=0,len;
+        i_obj.open(filename);
+
+
+        while(1)
+        {
+                char temp;
+                i_obj.get(temp);
+                if(i_obj.eof())
+                        break;
+                ch[i]=temp;
+                ++i;
+        }
+        len=i;
+        i=0;
+
+
+        for(i;i<len;i++)
+        {
+                if(int(ch[i]) >=97 && ch[i]<=122)
+                        ch[i] = char(int(ch[i])-32);
+                else if(int(ch[i]) >=65 && ch[i]<=90)
+                        ch[i] = char(int(ch[i])+32);
+        }
+        i_obj.close();
+
+
+        i_obj.open(filename);
+        i_obj.seekp(0);
+        for(i=0;i<len;i++)
+        {
+                i_obj << ch[i];
+        }
+        i_obj.close();
+        cout << "Case converted \n";
+}
+
+void displayContent(string filename)
+{
+        fstream obj;
+        char ch;
+        obj.open(filename);
+        cout << "File content : \n";
+        while(1)
+        {
+                obj.get(ch);
+                if(obj.eof())
+                        break;
+                cout << ch;
+        }
+        cout << endl;
+}
+void displayCountOfA(string filename)
+{
+        char ch;
+        int count=0;
+        fstream obj;
+        obj.open(filename);
+        while(1)
+        {
+                obj.get(ch);
+                if(ch=='a')
+                        count++;
+        }
+        cout << "Count of 'a' is : " << count << endl;
+}
+
+int main()
+{
+        string fname;
+        int ch;
+
+                cout << "Enter filename to create : ";
+                cin >> fname;
+                createFile(fname);
+                cout << "File created and data inserted\n";
+
+        do
+        {
+
+                cout<<"1.Convert case"<<endl;
+                cout<<"2.Display"<<endl;
+                cout<<"3.Count of a"<<endl;
+                cout<<"enter your choice: "<<endl;
+
+                cin >> ch;
+                switch(ch)
+                {
+                        case 1:
+                                convertCase(fname);
+                                break;
+                        case 2:
+                                displayContent(fname);
+                                break;
+                        case 3:
+                                displayCountOfA(fname);
+                                break;
+                        default :
+                                cout << "Invalid choice\n";
+                                exit(0);
+                }
+        }while(ch!=0);
+        return 0;
+}
+
+
+___________________________________________________________________________________________________
+//Ashwin
+//220970025
+//program to determine the Total number of characters, letters of the alphabet, digits, lines and spaces.
+//date:6/12/2022
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main(){
+        ofstream o_obj;
+        ifstream i_obj;
+        int no_char,no_letter,no_digit,no_line,no_space;
+        no_char = no_letter = no_digit = no_line = no_space = 0;
+        string content;
+        cout << "\nEnter the content( '#' to end) : "<<endl;
+        getline(cin,content,'#');
+        o_obj.open("content.txt");
+        o_obj << content;
+        o_obj.close();
+        cout << "***File created\n";
+        char ch;
+        i_obj.open("content.txt");
+        while(1){
+                i_obj.get(ch);
+                if(i_obj.eof())
+                        break;
+                no_char += 1;
+                if(int(ch)>=65 && int(ch)<=90 || int(ch)>=97 && int(ch)<=122)
+                        no_letter+=1;
+                if(int(ch)>=48&&int(ch)<=57)
+                        no_digit+=1;
+                if(ch=='\n')
+
+                        no_line+=1;
+                if(ch==' ')
+                        no_space+=1;
+        }
+        cout << "No. of chars : " << no_char << endl;
+        cout << "No. of letter : " << no_letter << endl;
+        cout << "No. of digit : " << no_digit << endl;
+        cout << "No. of line : " << no_line << endl;
+        cout << "No. of spaces : " << no_space << endl;
+        return 0;
+}
